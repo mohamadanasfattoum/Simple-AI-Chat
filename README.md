@@ -55,7 +55,7 @@ Feel free to submit issues or pull requests to improve the application!
 - [Flask](https://flask.palletsprojects.com/)
 - [Langchain](https://langchain.readthedocs.io/)
 - [Ollama](https://ollama.com/)
-```
+
 
 ![Chat App Preview](https://github.com/mohamadanasfattoum/Simple-AI-Chat/blob/main/Chat%20With%20Ollama.png)
 
