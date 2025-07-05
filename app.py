@@ -23,6 +23,9 @@ def chat_home():
     return render_template("chat.html")
 
 
+@socketio.on('message') # Wird ausgelöst, wenn ein WebSocket-Event vom Typ "message" empfangen wird
+def handle_message(data): # Empfängt Daten über WebSocket und führt anschließend eine POST-Anfrage aus
+    pass
 
 
 if __name__=="__main__":
