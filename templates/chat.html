@@ -52,14 +52,17 @@
                 if (!message) return ;
 
                 // display message in Chat
-                const userMessage = $('<div>').addClass('message user').text('You' + messsage)
+                const userMessage = $('<div>').addClass('message user').text('You: ' + message)
                 $chat.append(userMessage)
 
                 // emit message to backend
                 // Nachricht an den Backend-Server senden
                 socket.emit('message', {message: message})
-                
+
             }
+
+            // connect function with send button
+            $('#sendBtn').click(sendMessage)
         })
     </script>
 </body>
