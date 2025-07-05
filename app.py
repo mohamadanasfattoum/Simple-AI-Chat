@@ -35,10 +35,10 @@ def handle_message(data): # Empf채ngt Daten 체ber WebSocket und f체hrt anschlie�
     chain = prompt | llm  # Erstelle eine Kette aus dem Prompt und dem Sprachmodell
     response = chain.invoke({"input":user_message})  # Nimm die Frage des Benutzers als Eingabe, rufe die Kette auf, um eine Antwort zu generieren und speichere die Antwort
 
-    chat_history.append(AIMessage(content=response))  # KI-Antwort zur Chat-Historie hinzuf체gen
+    chat_history.append(AIMessage(content=response.content))  # KI-Antwort zur Chat-Historie hinzuf체gen
     
     # emit response
-    emit('response', {'message': response})  # Sende die generierte KI-Antwort 체ber WebSocket zur체ck an den Client, damit sie im Frontend angezeigt werden kann
+    emit('response', {'message': response.content})  # Sende die generierte KI-Antwort 체ber WebSocket zur체ck an den Client, damit sie im Frontend angezeigt werden kann
 
 
 

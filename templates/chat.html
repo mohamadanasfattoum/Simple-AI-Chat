@@ -44,6 +44,11 @@
             const $input = $("#input")
 
             // handle incoming response
+            // response kommt von backend von emit in handle_message function 
+            socket.on('response',function(data){
+                const message =  $('<div>').addClass('message ai').text('AI: ' + data.message)
+                    $chat.append(message)
+            }); // response same evnt from emit in Backend
 
 
             // handle send user message
@@ -60,7 +65,7 @@
                 socket.emit('message', {message: message})
 
                 // clean input
-                $input.val('')
+                $input.val('');
             }
 
             // connect function with send button
