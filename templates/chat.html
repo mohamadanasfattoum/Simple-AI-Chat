@@ -38,7 +38,11 @@
 
 
     <script>
-        
+        $(document).ready(function(){
+            const socket  = io();  // Initialisierung der Socket.IO-Verbindung
+            const $chat = $("#chat")
+            const $input = $("#input")
+        })
     </script>
 </body>
 </html>
