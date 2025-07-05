@@ -6,9 +6,27 @@
     <title>Chat</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- marked cdn  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js" integrity="sha512-rPuOZPx/WHMHNx2RoALKwiCDiDrCo4ekUctyTYKzBo8NGA79NcTW2gfrbcCL2RYL7RdjX2v9zR0fKyI4U4kPew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
         #chat{
             height: 600px;
+            overflow-y:auto ;
+        }
+        .message{
+            margin: 10px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .user{
+            background-color: #d1e7ff;
+            margin-left: 20%;
+            margin-right: 10%;
+        }
+        .ai{
+            background-color: #d4edda;
+            margin-left: 10%;
+            margin-right: 20%;
         }
     </style>
 </head>
@@ -46,8 +64,10 @@
             // handle incoming response
             // response kommt von backend von emit in handle_message function 
             socket.on('response',function(data){
-                const message =  $('<div>').addClass('message ai').text('AI: ' + data.message)
-                    $chat.append(message)
+                const message =  $('<div>').addClass('message ai')
+                message.html(marked.parse('**AI**: ' + data.message))
+                $chat.append(message)
+                $chat.scrollTop($chat[0].scrollHeight)
             }); // response same evnt from emit in Backend
 
 
