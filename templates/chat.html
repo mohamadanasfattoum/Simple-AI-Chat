@@ -59,10 +59,13 @@
                 // Nachricht an den Backend-Server senden
                 socket.emit('message', {message: message})
 
+                // clean input
+                $input.val('')
             }
 
             // connect function with send button
             $('#sendBtn').click(sendMessage)
+
         })
     </script>
 </body>
