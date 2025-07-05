@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, emit
 from langchain_ollama import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.messages import HumanMessage , AIMessage
@@ -35,7 +35,13 @@ def handle_message(data): # Empf채ngt Daten 체ber WebSocket und f체hrt anschlie�
     chain = prompt | llm  # Erstelle eine Kette aus dem Prompt und dem Sprachmodell
     response = chain.invoke({"input":user_message})  # Nimm die Frage des Benutzers als Eingabe, rufe die Kette auf, um eine Antwort zu generieren und speichere die Antwort
 
-    chat_history.append(AIMessage(content=response))
+    chat_history.append(AIMessage(content=response))  # KI-Antwort zur Chat-Historie hinzuf체gen
+    
+    # emit response
+    emit('response', {'message': response})  # Sende die generierte KI-Antwort 체ber WebSocket zur체ck an den Client, damit sie im Frontend angezeigt werden kann
+
+
+
 
 if __name__=="__main__":
     socketio.run(app,debug=True)
