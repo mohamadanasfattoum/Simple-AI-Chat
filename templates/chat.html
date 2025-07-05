@@ -54,6 +54,11 @@
                 // display message in Chat
                 const userMessage = $('<div>').addClass('message user').text('You' + messsage)
                 $chat.append(userMessage)
+
+                // emit message to backend
+                // Nachricht an den Backend-Server senden
+                socket.emit('message', {message: message})
+                
             }
         })
     </script>
